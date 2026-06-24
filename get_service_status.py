@@ -1,5 +1,5 @@
 import json
-
+from urllib.parse import urlsplit
 import requests
 from SPARQLWrapper import SPARQLWrapper, JSON
 from datetime import date, timedelta, datetime
@@ -17,8 +17,9 @@ def check_status_code(url: str) -> str:
             status = STATES['OK']
         else:
             status = STATES['FAIL']
+        millis = response.elapsed / timedelta(milliseconds=1)
 
-        return format_status(status, f'URL {url} returned status_code:<b>{response.status_code}</b>. <br /> \n')
+        return format_status(status, f'[{urlsplit(url).netloc}]({url}) status code: <b>{response.status_code}</b> respons duurde {millis}ms. <br /> \n')
 
     except Exception as e:
         print(e)
@@ -88,7 +89,7 @@ def check_datacatalog_on_dataregister() -> str:
         else:
             status = STATES['FAIL']
 
-        return format_status(status, f'{set_count_nde}/{set_count_rce} datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  <br /> \n')
+        return format_status(status, f'<b>{set_count_nde}/{set_count_rce}</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  <br /> \n')
     except Exception as e:
         print(e)
 

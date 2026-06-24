@@ -2,7 +2,6 @@ import json
 from urllib.parse import urlsplit
 import requests
 from datetime import date, timedelta, datetime, timezone, tzinfo
-import pytz
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 

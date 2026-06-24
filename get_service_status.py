@@ -47,7 +47,7 @@ def check_ldv_service_status(service_uri: str) -> str:
         else:
             status = STATES['OK']
 
-        return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {cr} synchronisatie nodig: <b>{sy}</b>.  <br /> \n')
+        return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.  <br /> \n')
     except TimeoutError as te:
         print('Error getting endpoint description: %s', str(te))
 
@@ -94,7 +94,7 @@ def check_datacatalog_on_dataregister() -> str:
         print(e)
 
 def format_status(status: str, msg: str) -> str:
-    return f'{status} [{datetime.now():%Y-%m-%d %H:%M.%S}] {msg}'
+    return f'{status} [{datetime.now():%Y-%m-%d %H:%M}] {msg}'
 
 def main():
     test_list = [

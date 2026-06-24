@@ -1,8 +1,10 @@
 import json
 from urllib.parse import urlsplit
 import requests
+from datetime import date, timedelta, datetime, timezone, tzinfo
+import pytz
 from SPARQLWrapper import SPARQLWrapper, JSON
-from datetime import date, timedelta, datetime
+
 
 STATES = {
     'OK': '![#339900](https://placehold.co/5x5/339900/339900.png)',
@@ -29,6 +31,8 @@ def check_ldv_service_status(service_uri: str) -> str:
     """ Validate against endpoint """
     headers = {'accept': 'text/plain'}
     timeformat_src = '%Y-%m-%dT%H:%M:%S.%fZ'
+    cet = pytz.timezone('CET')
+
     try:
         response = requests.get(service_uri, headers=headers, timeout=100)
         item_info = json.loads(response.content)
@@ -37,13 +41,15 @@ def check_ldv_service_status(service_uri: str) -> str:
         sy = item_info.get('outOfSync')
         ty = item_info.get('type')
         cr = datetime.strptime(item_info.get('createdAt'), timeformat_src)
-
+        now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
+        
         if st != 'running':
             status = STATES['FAIL']
         elif sy == 'true':
             status = STATES['WARNING']
-        elif datetime.now() - cr <= timedelta(days=1):
+        elif now_cet - cr <= timedelta(days=1):
              status = STATES['WARNING']
+             cr = f'<u>{cr}</u>'
         else:
             status = STATES['OK']
 
@@ -94,7 +100,8 @@ def check_datacatalog_on_dataregister() -> str:
         print(e)
 
 def format_status(status: str, msg: str) -> str:
-    return f'{status} [{datetime.now():%Y-%m-%d %H:%M}] {msg}'
+    now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
+    return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg}'
 
 def main():
     test_list = [
@@ -104,7 +111,10 @@ def main():
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/'),
-        check_status_code('https://data.cultureelerfgoed.nl/term/id/abr/b402446a-0a00-4fee-a9cd-1a7f307d651e.html')
+        check_status_code('https://data.cultureelerfgoed.nl/term/id/abr/b402446a-0a00-4fee-a9cd-1a7f307d651e.html'),
+        check_status_code('https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
+        check_status_code('https://beeldbank.cultureelerfgoed.nl/'),
+        check_status_code('https://www.cultureelerfgoed.nl/'),
         ]
     with open("README.md", "w") as f:
         f.write(f'# Services <br /> \n')

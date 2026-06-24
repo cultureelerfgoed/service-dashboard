@@ -2,7 +2,7 @@ name: 'Refresh Dashboard'
 
 on:
   schedule:
-  - cron: '0 15 * * *'
+  - cron: '0 */4 * * *'
     timezone: 'Europe/Amsterdam'  
   workflow_dispatch: {}
 

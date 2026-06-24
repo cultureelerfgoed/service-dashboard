@@ -9,6 +9,20 @@ STATES = {
     'WARNING': '![#ec942c](https://placehold.co/5x5/ec942c/ec942c.png)',
     'FAIL': '![#f03c15](https://placehold.co/5x5/f03c15/f03c15.png)',
 }
+def check_status_code(url: str) -> str:
+    try:
+        response = requests.get(url, allow_redirects=True)
+        
+        if response.status_code == 200:
+            status = STATES['OK']
+        else:
+            status = STATES['FAIL']
+
+        return format_status(status, f'URL {url} returned status_code:<b>{response.status_code}</b>. <br /> \n')
+
+    except Exception as e:
+        print(e)
+
 
 def check_ldv_service_status(service_uri: str) -> str:
     """ Validate against endpoint """
@@ -32,7 +46,7 @@ def check_ldv_service_status(service_uri: str) -> str:
         else:
             status = STATES['OK']
 
-        return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {cr} synchronisatie nodig: {sy}.  <br /> \n')
+        return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {cr} synchronisatie nodig: <b>{sy}</b>.  <br /> \n')
     except TimeoutError as te:
         print('Error getting endpoint description: %s', str(te))
 
@@ -86,6 +100,10 @@ def main():
         check_datacatalog_on_dataregister(),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/'),
+        check_status_code('https://data.cultureelerfgoed.nl/term/id/abr/b402446a-0a00-4fee-a9cd-1a7f307d651e.html')
         ]
     with open("README.md", "w") as f:
         f.write(f'# Services <br /> \n')

@@ -1,7 +1,7 @@
 import json
 from urllib.parse import urlsplit
 import requests
-from datetime import date, timedelta, datetime, timezone, tzinfo
+from datetime import date, timedelta, datetime, timezone
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 
@@ -24,13 +24,13 @@ def check_status_code(url: str) -> str:
 
     except Exception as e:
         print(e)
+        return format_status(STATES['FAIL'], f'fout bij ophalen status code: {url}')
 
 
 def check_ldv_service_status(service_uri: str) -> str:
     """ Validate against endpoint """
     headers = {'accept': 'text/plain'}
     timeformat_src = '%Y-%m-%dT%H:%M:%S.%fZ'
-    cet = pytz.timezone('CET')
 
     try:
         response = requests.get(service_uri, headers=headers, timeout=100)
@@ -55,6 +55,8 @@ def check_ldv_service_status(service_uri: str) -> str:
         return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.  <br /> \n')
     except TimeoutError as te:
         print('Error getting endpoint description: %s', str(te))
+        return format_status(STATES['FAIL'], f'fout bij ophalen status code: {service_uri}')
+
 
 def check_datacatalog_on_dataregister() -> str:
     nde_sparql = SPARQLWrapper('https://datasetregister.netwerkdigitaalerfgoed.nl/sparql')
@@ -97,6 +99,8 @@ def check_datacatalog_on_dataregister() -> str:
         return format_status(status, f'<b>{set_count_nde}/{set_count_rce}</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  <br /> \n')
     except Exception as e:
         print(e)
+        return format_status(STATES['FAIL'], 'fout bij valideren datacatalogus op het datasetregister.')
+
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)

@@ -52,7 +52,7 @@ def check_ldv_service_status(service_uri: str) -> str:
         else:
             status = STATES['OK']
 
-        return format_status(status, f'service {nm}:{ty} <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.  <br /> \n')
+        return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.  <br /> \n')
     except TimeoutError as te:
         print('Error getting endpoint description: %s', str(te))
         return format_status(STATES['FAIL'], f'fout bij ophalen status code: {service_uri}')

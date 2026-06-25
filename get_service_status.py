@@ -20,11 +20,11 @@ def check_status_code(url: str) -> str:
             status = STATES['FAIL']
         millis = response.elapsed / timedelta(milliseconds=1)
 
-        return format_status(status, f'[{urlsplit(url).netloc}]({url}) status code: <b>{response.status_code}</b> respons duurde {millis}ms. <br /> \n')
+        return format_status(status, f'[{urlsplit(url).netloc}]({url}) status code: <b>{response.status_code}</b> respons duurde {millis}ms.')
 
     except Exception as e:
         print(e)
-        return format_status(STATES['FAIL'], f'fout bij ophalen status code: {url}')
+        return format_status(STATES['FAIL'], f'fout bij ophalen status code van: {url}')
 
 
 def check_ldv_service_status(service_uri: str) -> str:
@@ -52,10 +52,10 @@ def check_ldv_service_status(service_uri: str) -> str:
         else:
             status = STATES['OK']
 
-        return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.  <br /> \n')
+        return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.')
     except TimeoutError as te:
         print('Error getting endpoint description: %s', str(te))
-        return format_status(STATES['FAIL'], f'fout bij ophalen status code: {service_uri}')
+        return format_status(STATES['FAIL'], f'fout bij ophalen status code: <b>{service_uri}</b>')
 
 
 def check_datacatalog_on_dataregister() -> str:
@@ -96,7 +96,7 @@ def check_datacatalog_on_dataregister() -> str:
         else:
             status = STATES['FAIL']
 
-        return format_status(status, f'<b>{set_count_nde}/{set_count_rce}</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  <br /> \n')
+        return format_status(status, f'<b>{set_count_nde}/{set_count_rce}</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister. ')
     except Exception as e:
         print(e)
         return format_status(STATES['FAIL'], 'fout bij valideren datacatalogus op het datasetregister.')
@@ -104,7 +104,7 @@ def check_datacatalog_on_dataregister() -> str:
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
-    return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg}'
+    return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg} <br /> \n'
 
 def main():
     test_list = [

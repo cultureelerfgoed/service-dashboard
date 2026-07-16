@@ -1,8 +1,8 @@
 import os
 import json
 from urllib.parse import urlsplit
-import requests
 from datetime import date, timedelta, datetime, timezone
+import requests
 from SPARQLWrapper import SPARQLWrapper, JSON
 
 TOKEN = os.getenv('POOLPARTY_TOKEN')
@@ -16,7 +16,7 @@ def poolparty_test(url: str, description: str, token: str) -> str:
     try:
         if token:
             response = requests.get(url, allow_redirects=True, headers={'Authorization': f'{token}'}, timeout=120)
-            if response.status_code == 200:
+            if response.status_code == 200 and 'uri' in str(response.content):
                 status = STATES['OK']
             else:
                 status = STATES['FAIL']

@@ -22,7 +22,7 @@ def poolparty_test(url: str, description: str, token: str) -> str:
                 status = STATES['FAIL']
             millis = response.elapsed / timedelta(milliseconds=1)
     
-            return format_status(status, f'[{urlsplit(url).netloc}]({url}) <b>{description}</b> <b>{response.status_code}</b> {millis}ms.')
+            return format_status(status, f'[{urlsplit(url).netloc}]({url}) : <b>{description}</b> : <b>{response.status_code}</b> in {millis}ms.')
         else:
             return format_status(STATES['WARN'], 'Unable to authenticate.')
     except Exception as e:
@@ -39,7 +39,7 @@ def check_status_code(url: str) -> str:
             status = STATES['FAIL']
         millis = response.elapsed / timedelta(milliseconds=1)
 
-        return format_status(status, f'[{urlsplit(url).netloc}]({url}) <b>{response.status_code}</b> {millis}ms.')
+        return format_status(status, f'[{urlsplit(url).netloc}]({url}) : <b>{response.status_code}</b> in {millis}ms.')
 
     except Exception as e:
         print(e)
@@ -138,7 +138,6 @@ def main():
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de','Zoeken concept', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7', 'Geef me de het prefLabel van een bepaalde term.', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek', 'Staat een bepaalde term in de thesaurus?', TOKEN),
-        check_status_code('https://data.cultureelerfgoed.nl/term/id/abr/b402446a-0a00-4fee-a9cd-1a7f307d651e.html'),
         check_status_code('https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
         check_status_code('https://beeldbank.cultureelerfgoed.nl/'),
         check_status_code('https://www.cultureelerfgoed.nl/'),

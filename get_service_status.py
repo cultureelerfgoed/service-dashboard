@@ -16,10 +16,11 @@ STATES = {
 def poolparty_test(url: str, description: str, token: str) -> str:
     try:
         if token:
-            response = requests.get(url, allow_redirects=True, headers={'Authorization': f'{token}'}, timeout=120)
+            response = requests.get(url, allow_redirects=True, headers={'Authorization': f'{token}', 'Content-Type': 'application/json'}, timeout=120)
             if response.status_code == 200 and 'uri' in str(response.content):
                 status = STATES['OK']
             else:
+                print(response.content)
                 status = STATES['FAIL']
             millis = response.elapsed / timedelta(milliseconds=1)
     
@@ -138,12 +139,6 @@ def main():
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/concept?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all', 'Get concept status', TOKEN),
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/narrowers?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/04770e4f-1c11-40e7-a256-9de8c6d569c6&properties=all', 'Get narrowers', TOKEN),
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/broaders?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all&properties=all', 'Get broaders', TOKEN),
-        poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de','Zoeken concept', TOKEN),
-        poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7', 'Geef me de het prefLabel van een bepaalde term.', TOKEN),
-        poolparty_test('https://digitaalerfgoed-test.poolparty.biz/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek', 'Staat een bepaalde term in de thesaurus?', TOKEN),
-        poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/concept?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all', 'Get concept status', TOKEN),
-        poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/narrowers?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/04770e4f-1c11-40e7-a256-9de8c6d569c6&properties=all', 'Get narrowers', TOKEN),
-        poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/broaders?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all&properties=all', 'Get broaders', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de','Zoeken concept', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7', 'Geef me de het prefLabel van een bepaalde term.', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek', 'Staat een bepaalde term in de thesaurus?', TOKEN),

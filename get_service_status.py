@@ -1,3 +1,4 @@
+from multiprocessing import AuthenticationError
 import os
 import json
 from urllib.parse import urlsplit
@@ -24,10 +25,9 @@ def poolparty_test(url: str, description: str, token: str) -> str:
     
             return format_status(status, f'[{urlsplit(url).netloc}]({url}) : <b>{description}</b> : <b>{response.status_code}</b> in {millis}ms.')
         else:
-            return format_status(STATES['WARN'], 'Unable to authenticate.')
-    except Exception as e:
-            print(e)
-            return format_status(STATES['FAIL'], f'fout bij ophalen status code van: {url}')
+            raise AuthenticationError
+    except Exception:
+        return format_status(STATES['WARNING'], f'fout bij ophalen status code van: {url}')
     
 def check_status_code(url: str) -> str:
     try:
@@ -115,17 +115,20 @@ def check_datacatalog_on_dataregister() -> str:
             status = STATES['FAIL']
 
         return format_status(status, f'<b>{set_count_nde}/{set_count_rce}</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister. ')
-    except Exception as e:
-        print(e)
-        return format_status(STATES['FAIL'], 'fout bij valideren datacatalogus op het datasetregister.')
+    except Exception:
+        return format_status(STATES['WARNING'], 'fout bij valideren datacatalogus op het datasetregister.')
 
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
     return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg} <br /> \n'
 
+def add_status_badge(msg: str) -> str:
+    now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
+    return f'{msg} <br /> \n'
+
 def main():
-    test_list = [
+    service_list = [
         check_datacatalog_on_dataregister(),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
@@ -142,9 +145,26 @@ def main():
         check_status_code('https://beeldbank.cultureelerfgoed.nl/'),
         check_status_code('https://www.cultureelerfgoed.nl/'),
         ]
+    action_list = [
+        add_status_badge('[![PoolParty CHT Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml)'),
+        add_status_badge('[![PoolParty ABR Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/abr-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/abr-backup-poolparty.yml)'),
+        add_status_badge('[![PoolParty WO2 Thesaurus Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/wo2-thesaurus-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/wo2-thesaurus-backup-poolparty.yml)'),
+        add_status_badge('[![PoolParty Referentie Netwerk Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn-backup-poolparty.yml)'),
+        add_status_badge('[![PoolParty Referentie Netwerk 2 Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml)'),
+        add_status_badge('[![CHT concepts + scopeNotes for Kennisbank](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml)'),
+        add_status_badge('[![Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
+        add_status_badge('[![Harvest, transform, and push new datacatalog daily.](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/push_latest_datacatalog.yml/badge.svg)](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/push_latest_datacatalog.yml)'),
+        add_status_badge('[![Muurschilderingendatabase ETL](https://github.com/cultureelerfgoed/muurschilderingendatabase-etl/actions/workflows/muurschilderingendatabase-etl.yml/badge.svg)](https://github.com/cultureelerfgoed/muurschilderingendatabase-etl/actions/workflows/muurschilderingendatabase-etl.yml)'),
+        add_status_badge('[![RCE Kunstcollecties ETL: stateful harvest + transform](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml/badge.svg)](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml)'),
+        add_status_badge('[![Refresh Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml)'),
+    ]
+
     with open("README.md", "w") as f:
-        f.write(f'# Services <br /> \n')
-        for entry in test_list:
+        f.write('# Services <br /> \n')
+        for entry in service_list:
+            f.write(entry)
+        f.write('# Actions <br /> \n')
+        for entry in action_list:
             f.write(entry)
     
 if __name__ == "__main__":

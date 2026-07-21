@@ -16,7 +16,7 @@ STATES = {
 def poolparty_test(url: str, description: str, token: str) -> str:
     try:
         if token:
-            response = requests.get(url, allow_redirects=True, headers={'Authorization': f'{token}', 'Content-Type': 'application/json'}, timeout=120)
+            response = requests.get(url, allow_redirects=True, headers={'Authorization': f'Basic {token}', 'Content-Type': 'application/json'}, timeout=120)
             if response.status_code == 200 and 'uri' in str(response.content):
                 status = STATES['OK']
             else:

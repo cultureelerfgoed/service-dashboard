@@ -30,7 +30,7 @@ def poolparty_test(url: str, description: str, token: str) -> str:
     except Exception:
         return format_status(STATES['WARNING'], f'fout bij ophalen status code van: {url}')
     
-def check_status_code(url: str) -> str:
+def check_status_code(msg: str, url: str) -> str:
     try:
         response = requests.get(url, allow_redirects=True)
         
@@ -40,7 +40,7 @@ def check_status_code(url: str) -> str:
             status = STATES['FAIL']
         millis = response.elapsed / timedelta(milliseconds=1)
 
-        return format_status(status, f'[{urlsplit(url).netloc}]({url}) : <b>{response.status_code}</b> in {millis}ms.')
+        return format_status(status, f'[{urlsplit(url).netloc}]({url}) : {msg} <b>{response.status_code}</b> in {millis}ms.')
 
     except Exception as e:
         print(e)
@@ -142,9 +142,6 @@ def main():
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de','Zoeken concept', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7', 'Geef me de het prefLabel van een bepaalde term.', TOKEN),
         poolparty_test('https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek', 'Staat een bepaalde term in de thesaurus?', TOKEN),
-        check_status_code('https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
-        check_status_code('https://beeldbank.cultureelerfgoed.nl/'),
-        check_status_code('https://www.cultureelerfgoed.nl/'),
         ]
     action_list = [
         add_status_badge('[![PoolParty CHT Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml)'),
@@ -159,13 +156,21 @@ def main():
         add_status_badge('[![RCE Kunstcollecties ETL: stateful harvest + transform](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml/badge.svg)](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml)'),
         add_status_badge('[![Refresh Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml)'),
     ]
-
+    website_list = [
+        check_status_code('Datasets op Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
+        check_status_code('Homepage Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/'),
+        check_status_code('Beeldbank RCE', 'https://beeldbank.cultureelerfgoed.nl/'),
+        check_status_code('Homepage RCE', 'https://www.cultureelerfgoed.nl/'),
+    ]
     with open("README.md", "w") as f:
-        f.write('# Services <br /> \n')
+        f.write('# Diensten <br /> \n')
         for entry in service_list:
             f.write(entry)
-        f.write('# Actions <br /> \n')
+        f.write('# Github Actions <br /> \n')
         for entry in action_list:
+            f.write(entry)
+        f.write('# Websites <br /> \n')
+        for entry in website_list:
             f.write(entry)
     
 if __name__ == "__main__":

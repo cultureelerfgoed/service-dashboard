@@ -72,10 +72,9 @@ def check_ldv_service_status(service_uri: str) -> str:
             status = STATES['OK']
 
         return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.')
-    except TimeoutError as te:
+    except Exception as te:
         print('Error getting endpoint description: %s', str(te))
         return format_status(STATES['FAIL'], f'fout bij ophalen status code: <b>{service_uri}</b>')
-
 
 def check_datacatalog_on_dataregister() -> str:
     nde_sparql = SPARQLWrapper('https://datasetregister.netwerkdigitaalerfgoed.nl/sparql')

@@ -47,7 +47,7 @@ def check_status_code(msg: str, url: str) -> str:
         return format_status(STATES['FAIL'], f'fout bij ophalen status code van: {url}')
 
 
-def check_ldv_service_status(service_uri: str) -> str:
+def check_ldv_service_status(service_uri: str, tag=None) -> str:
     """ Validate against endpoint """
     headers = {'accept': 'text/plain'}
     timeformat_src = '%Y-%m-%dT%H:%M:%S.%fZ'
@@ -71,10 +71,14 @@ def check_ldv_service_status(service_uri: str) -> str:
         else:
             status = STATES['OK']
 
-        return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.')
+        if tag and isinstance(tag, str):
+            return format_status(status, f'`{tag}`[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.')
+        else:
+            return format_status(status, f'[{nm}:{ty}]({service_uri}) <b>{st}</b> sinds {str(cr)[:-3]} sync nodig: <b>{sy}</b>.')
     except Exception as te:
         print('Error getting endpoint description: %s', str(te))
         return format_status(STATES['FAIL'], f'fout bij ophalen status code: <b>{service_uri}</b>')
+
 
 def check_datacatalog_on_dataregister() -> str:
     nde_sparql = SPARQLWrapper('https://datasetregister.netwerkdigitaalerfgoed.nl/sparql')
@@ -121,28 +125,25 @@ def check_datacatalog_on_dataregister() -> str:
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
-    return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg} <br /> \n'
+    return f'- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
 
 def add_status_badge(msg: str) -> str:
-    return f'{msg} <br /> \n'
+    return f'{msg} \n'
 
 def add_label(msg: str) -> str:
-    return f'#### {msg} <br /> \n'
+    return f'##### {msg} \n'
 
 def main():
     service_list = [
+        add_label('LDV'),
         # RCE Datacatalogus
-        add_label('RCE Datacatalogus'),
-        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog', 'RCE'),
         check_datacatalog_on_dataregister(),
         # CHT
-        add_label('CHT'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/'),
         #  CN.nl Datacatalogus
-        add_label('CN.nl Datacatalogus'),
-        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog'),
-        add_label('Other services'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog', 'CN.nl'),
         # CHO
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
         # ABR
@@ -186,13 +187,13 @@ def main():
         check_status_code('CN.nl homepage', 'https://collectienederland.nl/'),
     ]
     with open("README.md", "w") as f:
-        f.write('# Diensten <br /> \n')
+        f.write('# Diensten \n')
         for entry in service_list:
             f.write(entry)
-        f.write('# Github Actions <br /> \n')
+        f.write('# Github Actions \n')
         for entry in action_list:
             f.write(entry)
-        f.write('# Websites <br /> \n')
+        f.write('# Websites \n')
         for entry in website_list:
             f.write(entry)
     

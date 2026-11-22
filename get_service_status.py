@@ -135,22 +135,19 @@ def main():
         add_label('RCE Datacatalogus'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog'),
         check_datacatalog_on_dataregister(),
-
         # CHT
         add_label('CHT'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/'),
-        # CN.nl Datacatalogus
+        #  CN.nl Datacatalogus
         add_label('CN.nl Datacatalogus'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog'),
+        add_label('Other services'),
         # CHO
-        add_label('CHO'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
         # ABR
-        add_label('ABR'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/'),
         # CEO
-        add_label('CEO'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/ceo/services/ceo/'),
         # Poolparty tests
         add_label('PoolParty'),

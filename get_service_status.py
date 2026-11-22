@@ -131,7 +131,7 @@ def add_status_badge(msg: str) -> str:
     return f'\n- {msg} \n'
 
 def add_label(msg: str) -> str:
-    return f'\n ##### {msg} \n'
+    return f'\n##### {msg} \n'
 
 def main():
     service_list = [

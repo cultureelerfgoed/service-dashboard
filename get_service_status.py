@@ -128,7 +128,7 @@ def format_status(status: str, msg: str) -> str:
     return f'- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
 
 def add_status_badge(msg: str) -> str:
-    return f'{msg} \n'
+    return f'{msg} \n <br/>'
 
 def add_label(msg: str) -> str:
     return f'##### {msg} \n'
@@ -167,7 +167,6 @@ def main():
         add_status_badge('[![RCE Thesauri Backup - PoolParty Referentie Netwerk Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn-backup-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - PoolParty Referentie Netwerk 2 Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - CHT concepts + scopeNotes for Kennisbank](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml)'),
-        add_status_badge('[![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
         add_label('Pipelines'),
         add_status_badge('[![Deploy Thesauri PoolParty](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml/badge.svg)](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml)'),
         add_status_badge('[![Rijksmonumenten SDO pipeline](https://github.com/cultureelerfgoed/workflow-rijksmonumenten-sdo-termennetwerk/actions/workflows/schemaorg-pipeline.yml/badge.svg)](https://github.com/cultureelerfgoed/workflow-rijksmonumenten-sdo-termennetwerk/actions/workflows/schemaorg-pipeline.yml)'),
@@ -177,6 +176,7 @@ def main():
         add_status_badge('[![RCE Kunstcollecties ETL](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml/badge.svg)](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml)'),
         add_status_badge('[![Refresh Service Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml)'),
         add_label('Validatie'),
+            add_status_badge('[![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
         add_status_badge('[![Validate datacatalog endpoint using NDE validation service](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml/badge.svg)](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml)'),
     ]
     website_list = [

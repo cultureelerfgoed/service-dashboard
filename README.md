@@ -1,39 +1,39 @@
 # Diensten 
 
- ##### LDV 
+##### LDV 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] `RCE`[datacatalog:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog) <b>running</b> sinds 2026-03-03 12:47:38.084 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] `RCE`[datacatalog:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog) <b>running</b> sinds 2026-03-03 12:47:38.084 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] <b>6/6</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] <b>6/6</b> datasets uit de datacatalog van de RCE beschikbaar op het NDE Datasetregister.  
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [cht-jena:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/) <b>running</b> sinds 2025-08-22 14:06:54.562 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [cht-jena:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/) <b>running</b> sinds 2025-08-22 14:06:54.562 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [cht-virtuoso:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/) <b>running</b> sinds 2026-02-04 10:47:39.327 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [cht-virtuoso:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/) <b>running</b> sinds 2026-02-04 10:47:39.327 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] `CN.nl`[datacatalog:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog) <b>running</b> sinds 2026-10-13 10:09:55.777 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] `CN.nl`[datacatalog:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog) <b>running</b> sinds 2026-10-13 10:09:55.777 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [cho:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/) <b>running</b> sinds 2026-06-17 22:35:09.207 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [cho:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/) <b>running</b> sinds 2026-06-17 22:35:09.207 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [archeologischbasisregister-jena:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/) <b>running</b> sinds 2026-07-13 13:59:55.783 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [archeologischbasisregister-jena:jena](https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/) <b>running</b> sinds 2026-07-13 13:59:55.783 sync nodig: <b>False</b>. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [ceo:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/ceo/services/ceo/) <b>running</b> sinds 2026-06-17 22:07:32.957 sync nodig: <b>False</b>. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [ceo:virtuoso](https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/ceo/services/ceo/) <b>running</b> sinds 2026-06-17 22:07:32.957 sync nodig: <b>False</b>. 
 
- ##### PoolParty 
+##### PoolParty 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/concept?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all) : <b>Get concept status</b> : <b>200</b> in 895.795ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/concept?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all) : <b>Get concept status</b> : <b>200</b> in 1109.24ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/narrowers?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/04770e4f-1c11-40e7-a256-9de8c6d569c6&properties=all) : <b>Get narrowers</b> : <b>200</b> in 1500.896ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/narrowers?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/04770e4f-1c11-40e7-a256-9de8c6d569c6&properties=all) : <b>Get narrowers</b> : <b>200</b> in 1703.051ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/broaders?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all&properties=all) : <b>Get broaders</b> : <b>200</b> in 821.093ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [digitaalerfgoed-test.poolparty.biz](https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/broaders?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all&properties=all) : <b>Get broaders</b> : <b>200</b> in 920.361ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de) : <b>Zoeken concept</b> : <b>200</b> in 1120.803ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1b8bd4e8-d51c-4ae2-8c16-c56751e2c470&properties=all&language=de) : <b>Zoeken concept</b> : <b>200</b> in 1377.642ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7) : <b>Geef me de het prefLabel van een bepaalde term.</b> : <b>200</b> in 639.225ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/PoolParty/api/thesaurus/1DF17ED4-4A38-0001-C6FF-883013B04AD0/concept?concept=https://data.cultureelerfgoed.nl/term/id/cht/1685e55b-68a3-421f-9bf8-a64b6ec269b7) : <b>Geef me de het prefLabel van een bepaalde term.</b> : <b>200</b> in 1007.332ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek) : <b>Staat een bepaalde term in de thesaurus?</b> : <b>200</b> in 740.274ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [data.cultureelerfgoed.nl](https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek) : <b>Staat een bepaalde term in de thesaurus?</b> : <b>200</b> in 729.449ms. 
 # Github Actions 
 
- ##### Backup 
+##### Backup 
 
 - [![RCE Thesauri Backup - PoolParty CHT Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml) 
 
@@ -47,7 +47,7 @@
 
 - [![RCE Thesauri Backup - CHT concepts + scopeNotes for Kennisbank](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml) 
 
- ##### Pipelines 
+##### Pipelines 
 
 - [![Deploy Thesauri PoolParty](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml/badge.svg)](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml) 
 
@@ -63,19 +63,19 @@
 
 - [![Refresh Service Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml) 
 
- ##### Validatie 
+##### Validatie 
 
 - [![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml) 
 
 - [![Validate datacatalog endpoint using NDE validation service](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml/badge.svg)](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml) 
 # Websites 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [www.cultureelerfgoed.nl](https://www.cultureelerfgoed.nl/) : Homepage RCE <b>200</b> in 294.241ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [www.cultureelerfgoed.nl](https://www.cultureelerfgoed.nl/) : Homepage RCE <b>200</b> in 827.949ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [kennis.cultureelerfgoed.nl](https://kennis.cultureelerfgoed.nl/) : Homepage Kennisbank RCE <b>200</b> in 107.183ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [kennis.cultureelerfgoed.nl](https://kennis.cultureelerfgoed.nl/) : Homepage Kennisbank RCE <b>200</b> in 174.612ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [kennis.cultureelerfgoed.nl](https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE) : Datasets op Kennisbank RCE <b>200</b> in 301.896ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [kennis.cultureelerfgoed.nl](https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE) : Datasets op Kennisbank RCE <b>200</b> in 491.572ms. 
 
-- ![#f03c15](https://placehold.co/5x5/f03c15/f03c15.png) [2026-11-22 16:49] [beeldbank.cultureelerfgoed.nl](https://beeldbank.cultureelerfgoed.nl/) : Beeldbank RCE <b>403</b> in 479.82ms. 
+- ![#f03c15](https://placehold.co/5x5/f03c15/f03c15.png) [2026-11-22 17:22] [beeldbank.cultureelerfgoed.nl](https://beeldbank.cultureelerfgoed.nl/) : Beeldbank RCE <b>403</b> in 824.513ms. 
 
-- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 16:49] [collectienederland.nl](https://collectienederland.nl/) : CN.nl homepage <b>200</b> in 443.141ms. 
+- ![#339900](https://placehold.co/5x5/339900/339900.png) [2026-11-22 17:22] [collectienederland.nl](https://collectienederland.nl/) : CN.nl homepage <b>200</b> in 610.367ms. 

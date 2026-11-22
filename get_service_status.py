@@ -124,17 +124,36 @@ def format_status(status: str, msg: str) -> str:
     return f'{status} [{now_cet:%Y-%m-%d %H:%M}] {msg} <br /> \n'
 
 def add_status_badge(msg: str) -> str:
-    now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
     return f'{msg} <br /> \n'
+
+def add_label(msg: str) -> str:
+    return f'#### {msg} <br /> \n'
 
 def main():
     service_list = [
-        check_datacatalog_on_dataregister(),
+        # RCE Datacatalogus
+        add_label('RCE Datacatalogus'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/datacatalog/services/datacatalog'),
-        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
+        check_datacatalog_on_dataregister(),
+
+        # CHT
+        add_label('CHT'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-jena/'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/cht/services/cht-virtuoso/'),
+        # CN.nl Datacatalogus
+        add_label('CN.nl Datacatalogus'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/collectienederland/datacatalog/services/datacatalog'),
+        # CHO
+        add_label('CHO'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/cho/services/cho/'),
+        # ABR
+        add_label('ABR'),
         check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/thesauri/archeologischbasisregister/services/archeologischbasisregister-jena/'),
+        # CEO
+        add_label('CEO'),
+        check_ldv_service_status('https://api.linkeddata.cultureelerfgoed.nl/datasets/rce/ceo/services/ceo/'),
+        # Poolparty tests
+        add_label('PoolParty'),
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/concept?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all', 'Get concept status', TOKEN),
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/narrowers?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/04770e4f-1c11-40e7-a256-9de8c6d569c6&properties=all', 'Get narrowers', TOKEN),
         poolparty_test('https://digitaalerfgoed-test.poolparty.biz/PoolParty/api/thesaurus/312d0e18-773b-45eb-95ff-51a94d760967/broaders?concept=https://digitaalerfgoed-test.poolparty.biz/term/id/cht/9f841236-c0d0-4583-bfab-b2e8ddcf8fec&properties=all&properties=all', 'Get broaders', TOKEN),
@@ -143,6 +162,7 @@ def main():
         poolparty_test('https://data.cultureelerfgoed.nl/extractor/api/suggest?projectId=1DF17ED4-4A38-0001-C6FF-883013B04AD0&language=nl&searchString=gotiek', 'Staat een bepaalde term in de thesaurus?', TOKEN),
         ]
     action_list = [
+        add_label('Backup'),
         add_status_badge('[![RCE Thesauri Backup - PoolParty CHT Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-backup-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - PoolParty ABR Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/abr-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/abr-backup-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - PoolParty WO2 Thesaurus Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/wo2-thesaurus-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/wo2-thesaurus-backup-poolparty.yml)'),
@@ -150,6 +170,7 @@ def main():
         add_status_badge('[![RCE Thesauri Backup - PoolParty Referentie Netwerk 2 Backup](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/rn2-backup-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - CHT concepts + scopeNotes for Kennisbank](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/cht-kennisbank-poolparty.yml)'),
         add_status_badge('[![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
+        add_label('Pipelines'),
         add_status_badge('[![Deploy Thesauri PoolParty](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml/badge.svg)](https://github.com/cultureelerfgoed/thesauri-poolparty-ldv/actions/workflows/deploy.yml)'),
         add_status_badge('[![Rijksmonumenten SDO pipeline](https://github.com/cultureelerfgoed/workflow-rijksmonumenten-sdo-termennetwerk/actions/workflows/schemaorg-pipeline.yml/badge.svg)](https://github.com/cultureelerfgoed/workflow-rijksmonumenten-sdo-termennetwerk/actions/workflows/schemaorg-pipeline.yml)'),
         add_status_badge('[![TOOI maandelijkse sync](https://github.com/cultureelerfgoed/tooi/actions/workflows/tooi-sync.yml/badge.svg)](https://github.com/cultureelerfgoed/tooi/actions/workflows/tooi-sync.yml)'),
@@ -157,12 +178,15 @@ def main():
         add_status_badge('[![Muurschilderingendatabase weekly ETL](https://github.com/cultureelerfgoed/muurschilderingendatabase-etl/actions/workflows/muurschilderingendatabase-etl.yml/badge.svg)](https://github.com/cultureelerfgoed/muurschilderingendatabase-etl/actions/workflows/muurschilderingendatabase-etl.yml)'),
         add_status_badge('[![RCE Kunstcollecties ETL](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml/badge.svg)](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml)'),
         add_status_badge('[![Refresh Service Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml)'),
+        add_label('Validatie'),
+        add_status_badge('[![Validate datacatalog endpoint using NDE validation service](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml/badge.svg)](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml)'),
     ]
     website_list = [
-        check_status_code('Datasets op Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
-        check_status_code('Homepage Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/'),
-        check_status_code('Beeldbank RCE', 'https://beeldbank.cultureelerfgoed.nl/'),
         check_status_code('Homepage RCE', 'https://www.cultureelerfgoed.nl/'),
+        check_status_code('Homepage Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/'),
+        check_status_code('Datasets op Kennisbank RCE', 'https://kennis.cultureelerfgoed.nl/index.php/Datasets_van_de_RCE'),
+        check_status_code('Beeldbank RCE', 'https://beeldbank.cultureelerfgoed.nl/'),
+        check_status_code('CN.nl homepage', 'https://collectienederland.nl/'),
     ]
     with open("README.md", "w") as f:
         f.write('# Diensten <br /> \n')

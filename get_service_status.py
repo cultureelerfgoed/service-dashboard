@@ -125,10 +125,10 @@ def check_datacatalog_on_dataregister() -> str:
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
-    return f'\n- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
+    return f'- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
 
 def add_status_badge(msg: str) -> str:
-    return f'\n- {msg} \n'
+    return f'- {msg} \n'
 
 def add_label(msg: str) -> str:
     return f'\n##### {msg} \n'

@@ -125,13 +125,13 @@ def check_datacatalog_on_dataregister() -> str:
 
 def format_status(status: str, msg: str) -> str:
     now_cet = (datetime.now(timezone.utc) + timedelta(hours=2)).replace(tzinfo=None)
-    return f'- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
+    return f'\n- {status} [{now_cet:%Y-%m-%d %H:%M}] {msg} \n'
 
 def add_status_badge(msg: str) -> str:
-    return f'{msg} \n <br/>'
+    return f'\n- {msg} \n'
 
 def add_label(msg: str) -> str:
-    return f'##### {msg} \n'
+    return f'\n ##### {msg} \n'
 
 def main():
     service_list = [
@@ -176,7 +176,7 @@ def main():
         add_status_badge('[![RCE Kunstcollecties ETL](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml/badge.svg)](https://github.com/cultureelerfgoed/kunstcollecties-etl/actions/workflows/stateful_harvest_kunstcollecties.yml)'),
         add_status_badge('[![Refresh Service Dashboard](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml/badge.svg)](https://github.com/cultureelerfgoed/service-dashboard/actions/workflows/refresh_dashboard.yml)'),
         add_label('Validatie'),
-            add_status_badge('[![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
+        add_status_badge('[![RCE Thesauri Backup - Daily count of LDV CHO triples](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml/badge.svg)](https://github.com/cultureelerfgoed/rce-thesauri-backup/actions/workflows/ldv-cho-count.yml)'),
         add_status_badge('[![Validate datacatalog endpoint using NDE validation service](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml/badge.svg)](https://github.com/cultureelerfgoed/datacatalog-etl/actions/workflows/validate_endpoint.yml)'),
     ]
     website_list = [

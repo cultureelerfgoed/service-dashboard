@@ -1,3 +1,2 @@
-remote_theme: jekyll/minima
-plugins:
-  - jekyll-remote-thememarkdown: GFM
+theme: minima
+markdown: GFM
